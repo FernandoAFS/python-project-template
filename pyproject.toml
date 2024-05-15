@@ -1,0 +1,91 @@
+[project]
+name = "<your name>"
+dynamic = ["version"]
+description = "<Your description>"
+authors = [
+    {name = "<Yourself>", email = "<your-email>"},
+]
+dependencies = [
+]
+requires-python = "==3.12.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.setuptools.dynamic]
+version = {attr = "<your app under src>.__version__"}
+
+
+[tool.setuptools.packages.find]
+# All the following settings are optional:
+where = ["src"] # ["."] by default
+namespaces = false  # true by default
+
+
+[tool.pdm]
+distribution = true
+
+[tool.pdm.dev-dependencies]
+dev = [
+    "pyright>=1.1.363",
+    "mypy>=1.10.0",
+    "ruff>=0.4.4",
+    "pytest>=8.2.0",
+    "hypothesis>=6.102.4", # MAYBE SKIP THIS ONE
+    "coverage>=7.5.1",
+    "tox>=4.15.0",
+    "pylint>=3.2.0",
+    "pytest-sugar>=1.0.0",
+    "tox-pdm>=0.7.2",
+    "bandit>=1.7.8",
+    "prospector>=1.7.7",
+    "pytest-asyncio>=0.23.6",
+    "mccabe>=0.6.1",
+    "pycodestyle>=2.8.0",
+    "pyroma>=4.2",
+    "dodgy>=0.2.1",
+    "frosted>=1.4.1",
+    "pyflakes>=2.4.0",
+    "vulture>=2.11",
+]
+
+
+[build-system]
+requires = ["setuptools>=64", "wheel", "nuitka", "toml"]
+build-backend = "nuitka.distutils.Build"
+
+
+[tool.pytest.ini_options]
+pythonpath = [
+  "."
+]
+asyncio_mode="auto"
+required_plugins=[
+    "pytest-asyncio", 
+    "pytest-sugar",
+    "pytest-asyncio",
+]
+
+
+[tool.ruff.lint]
+select = [
+    # pycodestyle
+    "E",
+    # Pyflakes
+    "F",
+    # pyupgrade
+    "UP",
+    # flake8-bugbear
+    "B",
+    # flake8-simplify
+    "SIM",
+    # isort
+    "I",
+]
+
+[tool.ruff.format]
+docstring-code-format = true
+docstring-code-line-length = 20
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
