@@ -1,0 +1,14 @@
+
+services:
+  build:
+    build:
+      context: .
+      target: backend
+      tags:
+        - ${APP_VERSION}
+    env_file:
+      - ./.env.default
+      - ./.env
+
+
+
